@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+npm-error.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+.project
+.classpath
+*.iml
+.cproject
+.settings/
+.c9/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build and coverage
+dist/
+build/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# Temporary files
+.tmp/
+.cache/
+.parcel-cache/
+
+# Optional: IDE-specific vscode settings
+# Uncomment if you want to exclude vscode settings from git
+# .vscode/settings.json
+# .vscode/launch.json
