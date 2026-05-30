@@ -46,6 +46,16 @@ console.log(label);
 // other
 ```
 
+When installed as a package, Lem exposes both CommonJS and ESM entrypoints:
+
+```js
+const { match, on, otherwise } = require("lem");
+```
+
+```js
+import { match, on, otherwise } from "lem";
+```
+
 Lem is intentionally small right now. It is not trying to compete with mature
 pattern matching libraries yet. The goal is to grow from a simple, readable core
 into a library that can support richer JavaScript patterns over time.
@@ -110,6 +120,12 @@ For local development, require the project root:
 const { match, on, otherwise } = require("./");
 ```
 
+Or import the ESM entrypoint directly:
+
+```js
+import { match, on, otherwise } from "./index.mjs";
+```
+
 Then define a match expression:
 
 ```js
@@ -154,16 +170,6 @@ library with clean internals and a pleasant API.
 
 ## Roadmap
 
-### Foundation
-
-- [x] Create the initial library structure.
-- [x] Add the MPL-2.0 license.
-- [x] Add the README and mascot logo.
-- [ ] Add `package.json`.
-- [ ] Add a test runner.
-- [ ] Publish under the package name `lem`.
-- [ ] Decide whether the package should expose CommonJS, ESM, or both.
-
 ### Pattern Matching
 
 - [x] Literal primitive patterns.
@@ -184,12 +190,26 @@ library with clean internals and a pleasant API.
 - [ ] Improve error messages for unsupported actions.
 - [ ] Consider async actions.
 
+### Testing
+
+- [ ] Write tests for the current public API: `match`, `on`, and `otherwise`.
+- [ ] Cover action resolver behavior.
+- [ ] Cover pattern matching edge cases such as `NaN`, `null`, and `undefined`.
+- [ ] Add module entrypoint tests for CommonJS and ESM.
+- [ ] Add regression tests alongside each new pattern feature.
+
 ### Developer Experience
 
+- [x] Expose both CommonJS and ESM entrypoints.
 - [ ] Add TypeScript declarations.
 - [ ] Add examples for reducers, parsers, and UI state.
 - [ ] Document edge cases such as `NaN`, `null`, and `undefined`.
 - [ ] Add comparison examples against `switch`.
+
+### Release
+
+- [ ] Publish under the package name `lem`.
+- [ ] Add release notes for the first experimental version.
 
 ## Inspiration
 

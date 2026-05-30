@@ -1,0 +1,37 @@
+{
+	"name": "lem",
+	"version": "0.1.0",
+	"description": "Lightweight pattern matching for expressive JavaScript code.",
+	"license": "MPL-2.0",
+	"type": "commonjs",
+	"main": "./index.js",
+	"module": "./index.mjs",
+	"exports": {
+		".": {
+			"import": "./index.mjs",
+			"require": "./index.js",
+			"default": "./index.mjs"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"index.js",
+		"index.mjs",
+		"lib",
+		"imgs",
+		"LICENSE",
+		"README.md"
+	],
+	"scripts": {
+		"test": "node --test"
+	},
+	"keywords": [
+		"pattern-matching",
+		"match",
+		"functional"
+	],
+	"engines": {
+		"node": ">=18"
+	},
+	"sideEffects": false
+}
