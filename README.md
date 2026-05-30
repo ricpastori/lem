@@ -200,11 +200,6 @@ Lem is especially inspired by:
 - [`gvergnaud/ts-pattern`](https://github.com/gvergnaud/ts-pattern), for its
   expressive API and rich pattern system.
 
-The README structure also takes presentation cues from projects such as
-[`NangoHQ/nango`](https://github.com/NangoHQ/nango) and
-[`pubkey/rxdb`](https://github.com/pubkey/rxdb): clear positioning, quick
-navigation, compact examples, and an honest feature overview.
-
 ## Mascot
 
 The lemur in the logo is Lem's mascot: small, quick, and comfortable jumping
