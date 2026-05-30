@@ -2,37 +2,36 @@
 	<img src="./imgs/lem_logo.png" alt="Lem logo" width="180" />
 </p>
 
-# lem
+<h1 align="center">lem</h1>
 
-Lightweight pattern matching for expressive JavaScript code.
+<p align="center">
+	Lightweight pattern matching for expressive JavaScript code.
+</p>
 
-`lem` is a small JavaScript library for writing branching logic as data: a value,
-a list of cases, and a fallback. It is currently in an early stage, with a
-minimal API focused on exact primitive matches and simple actions.
+<p align="center">
+	<a href="#what-is-lem">What is Lem?</a>
+	 ·
+	<a href="#quickstart">Quickstart</a>
+	 ·
+	<a href="#roadmap">Roadmap</a>
+	 ·
+	<a href="#inspiration">Inspiration</a>
+</p>
 
-## Status
+<p align="center">
+	<img alt="Status" src="https://img.shields.io/badge/status-experimental-orange" />
+	<img alt="Runtime" src="https://img.shields.io/badge/runtime-Node.js-43853d" />
+	<img alt="License" src="https://img.shields.io/badge/license-MIT-blue" />
+</p>
 
-This project is a work in progress.
+## What is Lem?
 
-Current behavior:
+`lem` is a tiny JavaScript library for writing branching logic as a list of
+patterns and actions.
 
-- Match primitive values with strict equality.
-- Define cases with `on(pattern, action)`.
-- Define a fallback case with `otherwise(action)`.
-- Use function actions, such as `() => "result"`.
-- Use primitive actions, such as `"result"`, `42`, `true`, or `10n`.
-- Throw when no case matches and no fallback is provided.
-
-Not supported yet:
-
-- Object patterns.
-- Array patterns.
-- Predicate patterns.
-- Public wildcard patterns.
-- TypeScript types.
-- npm installation.
-
-## Quick Example
+Instead of spreading conditional logic across `if`, `else`, and `switch` blocks,
+you describe the value you want to match, the cases that can handle it, and the
+fallback to use when nothing else matches.
 
 ```js
 const { match, on, otherwise } = require("./");
@@ -47,12 +46,18 @@ console.log(label);
 // other
 ```
 
-## API
+Lem is intentionally small right now. It is not trying to compete with mature
+pattern matching libraries yet. The goal is to grow from a simple, readable core
+into a library that can support richer JavaScript patterns over time.
 
-### `match(value, cases)`
+## How it works
 
-Evaluates the cases from top to bottom and returns the result of the first
-matching case.
+Lem currently gives you three primitives:
+
+### 1. `match(value, cases)`
+
+Receives a value and a list of cases. It returns the result of the first matching
+case.
 
 ```js
 match("loading", [
@@ -62,49 +67,90 @@ match("loading", [
 ]);
 ```
 
-If no case matches and no `otherwise` case exists, `match` throws an error.
+### 2. `on(pattern, action)`
 
-### `on(pattern, action)`
-
-Creates a case.
-
-For now, `pattern` is matched with strict equality:
+Defines a case. For now, patterns are matched with strict equality.
 
 ```js
 on("success", "Done")
 on(404, () => "Not found")
 ```
 
-### `otherwise(action)`
+### 3. `otherwise(action)`
 
-Creates the fallback case.
+Defines the fallback case.
 
 ```js
 otherwise(() => "Fallback")
 ```
 
-### Actions
+If no case matches and no fallback is provided, `match` throws an error.
 
-Actions are resolved by an internal registry.
+## Current Features
 
-Currently supported actions:
+| Feature | Status |
+| --- | --- |
+| Literal primitive matching | Available |
+| Function actions | Available |
+| Primitive actions | Available |
+| Fallback cases | Available |
+| Object patterns | Planned |
+| Array patterns | Planned |
+| Predicate patterns | Planned |
+| Public wildcard patterns | Planned |
+| TypeScript declarations | Planned |
 
-- Functions: executed only when their case matches.
-- Primitive values: returned as-is.
+## Quickstart
+
+Lem is not published to npm yet.
+
+For local development, require the project root:
 
 ```js
-on("a", () => "computed")
-on("b", "static")
+const { match, on, otherwise } = require("./");
 ```
 
-## Design Goals
+Then define a match expression:
 
-- Keep the public API small.
-- Stay JavaScript-first and dependency-free.
-- Make common branching logic easier to read than long `if` or `switch` blocks.
-- Keep pattern matching and action resolving as separate internal concepts.
-- Grow by adding small resolvers instead of turning the core into one large
-  conditional block.
+```js
+const status = "error";
+
+const message = match(status, [
+	on("idle", "Ready"),
+	on("loading", "Loading"),
+	on("success", "Done"),
+	on("error", () => "Something went wrong"),
+	otherwise("Unknown status"),
+]);
+
+console.log(message);
+```
+
+## Why Lem?
+
+Lem started as a study project: a way to understand how a small pattern matching
+library can be designed from the inside out.
+
+That origin is part of the project, not something to hide. It keeps the library
+focused on a few questions:
+
+- How small can the public API stay?
+- How clearly can pattern matching and action execution be separated?
+- Can new matching strategies be added as resolvers instead of one large
+  conditional block?
+- What would an approachable JavaScript-first pattern matching API look like?
+
+The long-term goal is not only to learn, but to turn that learning into a useful
+library with clean internals and a pleasant API.
+
+## Design Principles
+
+- Small public API.
+- JavaScript-first ergonomics.
+- Dependency-free core.
+- Explicit fallback behavior.
+- Separate pattern matching from action resolving.
+- Grow through small internal registries and resolvers.
 
 ## Roadmap
 
@@ -113,7 +159,7 @@ on("b", "static")
 - Add `package.json`.
 - Add a test runner.
 - Publish under the package name `lem`.
-- Decide the supported module formats.
+- Decide whether the package should expose CommonJS, ESM, or both.
 
 ### Pattern Matching
 
@@ -141,10 +187,22 @@ on("b", "static")
 
 ## Inspiration
 
-`lem` takes structural inspiration from pattern matching libraries such as
-[`ts-pattern`](https://github.com/gvergnaud/ts-pattern) and
-[`typescript-pattern-matching`](https://github.com/WimJongeneel/ts-pattern-matching),
-while intentionally starting with a smaller JavaScript-first API.
+Lem is especially inspired by:
+
+- [`z-pattern-matching/z`](https://github.com/z-pattern-matching/z), for its
+  JavaScript-first approach to pattern matching.
+- [`gvergnaud/ts-pattern`](https://github.com/gvergnaud/ts-pattern), for its
+  expressive API and rich pattern system.
+
+The README structure also takes presentation cues from projects such as
+[`NangoHQ/nango`](https://github.com/NangoHQ/nango) and
+[`pubkey/rxdb`](https://github.com/pubkey/rxdb): clear positioning, quick
+navigation, compact examples, and an honest feature overview.
+
+## Mascot
+
+The lemur in the logo is Lem's mascot: small, quick, and comfortable jumping
+from one branch to another.
 
 ## License
 
