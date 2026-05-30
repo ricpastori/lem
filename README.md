@@ -21,7 +21,7 @@
 <p align="center">
 	<img alt="Status" src="https://img.shields.io/badge/status-experimental-orange" />
 	<img alt="Runtime" src="https://img.shields.io/badge/runtime-Node.js-43853d" />
-	<img alt="License" src="https://img.shields.io/badge/license-MIT-blue" />
+	<img alt="License" src="https://img.shields.io/badge/license-MPL--2.0-blue" />
 </p>
 
 ## What is Lem?
@@ -90,15 +90,15 @@ If no case matches and no fallback is provided, `match` throws an error.
 
 | Feature | Status |
 | --- | --- |
-| Literal primitive matching | Available |
-| Function actions | Available |
-| Primitive actions | Available |
-| Fallback cases | Available |
-| Object patterns | Planned |
-| Array patterns | Planned |
-| Predicate patterns | Planned |
-| Public wildcard patterns | Planned |
-| TypeScript declarations | Planned |
+| Literal primitive matching | ✅ Available |
+| Function actions | ✅ Available |
+| Primitive actions | ✅ Available |
+| Fallback cases | ✅ Available |
+| Object patterns | 🧭 Planned |
+| Array patterns | 🧭 Planned |
+| Predicate patterns | 🧭 Planned |
+| Public wildcard patterns | 🧭 Planned |
+| TypeScript declarations | 🧭 Planned |
 
 ## Quickstart
 
@@ -156,34 +156,40 @@ library with clean internals and a pleasant API.
 
 ### Foundation
 
-- Add `package.json`.
-- Add a test runner.
-- Publish under the package name `lem`.
-- Decide whether the package should expose CommonJS, ESM, or both.
+- [x] Create the initial library structure.
+- [x] Add the MPL-2.0 license.
+- [x] Add the README and mascot logo.
+- [ ] Add `package.json`.
+- [ ] Add a test runner.
+- [ ] Publish under the package name `lem`.
+- [ ] Decide whether the package should expose CommonJS, ESM, or both.
 
 ### Pattern Matching
 
-- Literal patterns.
-- Predicate patterns.
-- Array patterns.
-- Object patterns.
-- Nested patterns.
-- Public wildcard pattern.
-- Multiple patterns for the same case.
+- [x] Literal primitive patterns.
+- [x] Fallback case with `otherwise`.
+- [ ] Predicate patterns.
+- [ ] Array patterns.
+- [ ] Object patterns.
+- [ ] Nested patterns.
+- [ ] Public wildcard pattern.
+- [ ] Multiple patterns for the same case.
 
 ### Actions
 
-- Keep the action resolver registry.
-- Decide whether object and array actions should be returned as-is.
-- Improve error messages for unsupported actions.
-- Consider async actions.
+- [x] Add the action resolver registry.
+- [x] Support function actions.
+- [x] Support primitive actions.
+- [ ] Decide whether object and array actions should be returned as-is.
+- [ ] Improve error messages for unsupported actions.
+- [ ] Consider async actions.
 
 ### Developer Experience
 
-- Add TypeScript declarations.
-- Add examples for reducers, parsers, and UI state.
-- Document edge cases such as `NaN`, `null`, and `undefined`.
-- Add comparison examples against `switch`.
+- [ ] Add TypeScript declarations.
+- [ ] Add examples for reducers, parsers, and UI state.
+- [ ] Document edge cases such as `NaN`, `null`, and `undefined`.
+- [ ] Add comparison examples against `switch`.
 
 ## Inspiration
 
@@ -206,4 +212,4 @@ from one branch to another.
 
 ## License
 
-MIT
+MPL-2.0
